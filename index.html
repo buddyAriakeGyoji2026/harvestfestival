@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUDDY 有明 2026 収穫祭 参加保護者情報ポータル</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts (Montserrat) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Outdoor Gear & Tactical Military Theme (Matching Summer Camp Portal) */
+  body { 
+    background-color: #F0EDE5; /* Canvas off-white */
+    color: #262626; /* Matte Black */
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; 
+    scroll-behavior: smooth; 
+  }
+  
+  /* Primary Olive Drab / Khaki */
+  .bg-primary { background-color: #4F5D4E; }
+  .text-primary { color: #4F5D4E; }
+  .border-primary { border-color: #4F5D4E; }
+  
+  /* Accent Rescue Orange */
+  .bg-accent { background-color: #F26430; }
+  .text-accent { color: #F26430; }
+  .border-accent { border-color: #F26430; }
+
+  /* Tactical Container Cards */
+  .card { 
+    background: #ffffff; 
+    border: 3px solid #262626; 
+    box-shadow: 6px 6px 0px #262626; 
+    border-radius: 2px; 
+    margin-bottom: 2rem; 
+    scroll-margin-top: 100px; 
+    position: relative;
+  }
+  
+  /* Spec Tag Label Style */
+  .spec-label {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #F26430;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    transform: rotate(2deg);
+    border: 2px solid #262626;
+    box-shadow: 2px 2px 0px #262626;
+    letter-spacing: 1px;
+    z-index: 10;
+  }
+
+  /* Section Title Style */
+  .section-title { 
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 1.35rem;
+    color: #262626;
+    border-bottom: 4px solid #262626; 
+    padding-bottom: 0.5rem; 
+    margin-bottom: 1.2rem; 
+    display: flex; 
+    align-items: center; 
+    letter-spacing: 0.5px;
+  }
+  
+  /* Tag Badges */
+  .badge { 
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem; 
+    background-color: #262626; 
+    color: #F0EDE5; 
+    font-size: 0.8rem; 
+    font-weight: bold; 
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+  }
+
+  /* Warning Striped Box */
+  .warning-box {
+    background: repeating-linear-gradient(
+      45deg,
+      #F26430,
+      #F26430 12px,
+      #d94d1a 12px,
+      #d94d1a 24px
+    );
+    border: 3px solid #262626;
+    box-shadow: 4px 4px 0px #262626;
+  }
+  .warning-content {
+    background: #262626;
+    color: #F0EDE5;
+    margin: 4px;
+    padding: 14px;
+    border: 2px solid #F26430;
+  }
+
+  /* Scrollable Header Navigation */
+  nav { 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none; 
+    border-top: 2px solid #262626;
+    border-bottom: 3px solid #262626;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-link { 
+    display: inline-block; 
+    padding: 0.75rem 1rem; 
+    color: #F0EDE5; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 0.85rem; 
+    border-bottom: 3px solid transparent; 
+    transition: all 0.2s; 
+    letter-spacing: 0.5px;
+  }
+  .nav-link:hover { 
+    border-bottom-color: #F26430; 
+    color: white; 
+    background-color: rgba(242, 100, 48, 0.2);
+  }
+  
+  /* Custom Bullet List */
+  ul.custom-list { list-style-type: none; padding-left: 0; }
+  ul.custom-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.6rem; }
+  ul.custom-list li::before { 
+    content: "■"; 
+    position: absolute; 
+    left: 0; 
+    color: #F26430; 
+    font-size: 0.8rem;
+    top: 0.1rem;
+  }
+  
+  /* Checkbox List Matching Summer Camp Style */
+  .gear-card {
+    background-color: #ffffff;
+    border: 3px solid #262626;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+    box-shadow: 3px 3px 0px #262626;
+  }
+  .gear-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  .gear-list li {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #262626;
+    margin-bottom: 0.65rem;
+    line-height: 1.4;
+  }
+  .gear-list li:last-child {
+    margin-bottom: 0;
+  }
+  .gear-list li i {
+    color: #4F5D4E;
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  /* Document Link Buttons */
+  .pdf-link {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 3px solid #262626;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #262626;
+    font-weight: bold;
+    box-shadow: 4px 4px 0px #262626;
+    transition: all 0.1s;
+  }
+  .pdf-link:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #262626;
+  }
+</style>
+</head>
+<body class="pb-10">
+
+<!-- Header & Main Navigation -->
+<header class="bg-primary text-white shadow-md sticky top-0 z-50">
+  <div class="p-2 md:p-4 flex items-center justify-center border-b-2 border-[#262626]">
+    <img src="buddy_hf_logo.png" alt="BUDDY 有明 2026 収穫祭" class="h-16 md:h-20 object-contain">
+  </div>
+  <div class="bg-[#262626] text-[#F0EDE5] text-center py-1 text-[0.65rem] md:text-xs font-black tracking-widest font-mono border-b-2 border-[#111]">
+    INFO PORTAL FOR PARENTS
+  </div>
+
+  <!-- Navigation Bar (Summer Camp Style) -->
+  <nav class="bg-[#3a4539] flex">
+    
+    <a href="#overview" class="nav-link"><i class="fa-solid fa-flag mr-1.5 text-accent"></i> 大原則・概要</a>
+    <a href="#rules" class="nav-link"><i class="fa-solid fa-triangle-exclamation mr-1.5 text-accent"></i> 行動・持ち物ルール</a>
+    <a href="#lodging" class="nav-link"><i class="fa-solid fa-hotel mr-1.5 text-accent"></i> 宿泊施設一覧</a>
+    <a href="#map" class="nav-link"><i class="fa-solid fa-map-location-dot mr-1.5 text-accent"></i> 会場マップ</a>
+    <a href="#schedule" class="nav-link"><i class="fa-regular fa-clock mr-1.5 text-accent"></i> スケジュール</a>
+    <a href="#staff" class="nav-link"><i class="fa-solid fa-lock mr-1.5 text-accent"></i> 行事係専用</a>
+  </nav>
+</header>
+
+<main class="p-4 max-w-2xl mx-auto mt-4">
+  
+  <!-- # このサイトについて -->
+  <section id="about" class="card p-6" style="border-radius: 8px;">
+    <div class="flex items-center gap-2 mb-4">
+      <i class="fa-solid fa-circle-info text-2xl text-primary"></i>
+      <h2 class="text-xl font-extrabold text-primary">このサイトについて</h2>
+    </div>
+    
+    <p class="text-sm md:text-base font-bold text-[#262626] leading-relaxed mb-5">
+      このサイトは、有明園収穫祭参加保護者向けに有明行事係が運営しているサポートサイトです。園に内容をご確認・ご了承いただいたうえで公開しています。収穫祭当日の流れや持ち物、配布資料などを分かりやすくまとめていますので、ぜひご活用ください。
+    </p>
+    
+    <div class="space-y-1 text-xs md:text-sm font-bold text-gray-700 leading-normal">
+      <p>※掲載内容に関するご質問・ご意見は、有明行事係までお願いいたします。</p>
+      <p>※園の運営や収穫祭全体に関するお問い合わせは、園へご確認ください。</p>
+    </div>
+  </section>
+
+  <!-- # 大原則・概要 -->
+  <section id="overview" class="card p-5">
+    <div class="spec-label">OVERVIEW</div>
+    <h2 class="section-title text-primary"><i class="fa-solid fa-flag text-2xl mr-3 text-accent"></i> 大原則・概要</h2>
+    
+    <div class="warning-box mb-6">
+      <div class="warning-content">
+        <h3 class="font-black text-base mb-2 border-b border-gray-600 pb-1 text-white">大原則：『すべては子どもたちの笑顔と安全のために』</h3>
+        <p class="text-sm mb-4 text-gray-300">子どもたちの安全と最高の思い出づくりを第一に考えています。許可のない見学・接触、違法駐車、近隣への迷惑となる行為などは、固くお断りいたします。皆さまのご理解とご協力をお願いいたします。</p>
+        
+        <div class="bg-white text-[#262626] p-3.5 border-2 border-accent">
+          <h4 class="font-black text-accent text-sm mb-1"><i class="fa-solid fa-triangle-exclamation"></i> ルール違反時のペナルティ</h4>
+          <p class="text-xs font-bold leading-relaxed">保護者のルール違反が確認された場合には、大会規定に基づき、お子様が所属する園の全チームの２日目クロスカントリーに追加タイム（ペナルティ）が加算されます。子どもたちのこれまでの努力を無駄にしないため、また、安心して全力を発揮できるよう、ルールの遵守にご協力をお願いいたします。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 緊急連絡先 -->
+    <span class="badge"><i class="fa-solid fa-phone mr-1.5"></i> 緊急連絡先</span>
+    <div class="p-4 border-2 border-[#262626] bg-gray-100 mb-6 flex flex-col shadow-[3px_3px_0px_#262626]">
+      <p class="text-xs text-red-600 font-bold mb-2"><i class="fa-solid fa-circle-exclamation mr-1"></i> ※緊急時以外の内容での連絡はご遠慮ください。</p>
+      <div class="bg-white border-2 border-[#262626] p-3.5 text-center">
+        <p class="font-bold text-gray-600 text-xs mb-1">キャンプ期間中のお問い合わせ先（バディ携帯）：</p>
+        <p class="text-xl font-black text-[#262626] tracking-widest font-mono">090-5191-7655</p>
+      </div>
+    </div>
+
+    <span class="badge"><i class="fa-solid fa-folder-open mr-1.5"></i> 園公式配布資料一覧</span>
+    <p class="text-xs text-gray-600 mb-2 font-bold">収穫祭に関して配布された公式資料です。必ず事前にご確認ください。</p>
+    <div class="space-y-2.5 mb-6">
+      <a href="#" class="pdf-link">
+        <i class="fa-regular fa-file-pdf text-red-500 text-xl mr-3 w-6 text-center"></i>
+        <span class="font-black text-[13px] md:text-sm text-[#262626]">① 収穫祭のお知らせ <span class="text-[11px] md:text-xs text-gray-500 ml-1 font-bold">（2026年7月23日 配信）</span></span>
+      </a>
+      <a href="#" class="pdf-link">
+        <i class="fa-regular fa-file-pdf text-red-500 text-xl mr-3 w-6 text-center"></i>
+        <span class="font-black text-[13px] md:text-sm text-[#262626]">② 収穫祭持ち物 <span class="text-[11px] md:text-xs text-gray-500 ml-1 font-bold">（2026年8月31日 配信）</span></span>
+      </a>
+      <a href="#" class="pdf-link">
+        <i class="fa-regular fa-file-pdf text-red-500 text-xl mr-3 w-6 text-center"></i>
+        <span class="font-black text-[13px] md:text-sm text-[#262626]">③ 収穫祭 お子様の健康管理・確認表 <span class="text-[11px] md:text-xs text-gray-500 ml-1 font-bold">（2026年8月31日 配信）</span></span>
+      </a>
+      <a href="#" class="pdf-link">
+        <i class="fa-regular fa-file-pdf text-red-500 text-xl mr-3 w-6 text-center"></i>
+        <span class="font-black text-[13px] md:text-sm text-[#262626]">④ 収穫祭に参加される保護者の皆様へ <span class="text-[11px] md:text-xs text-gray-500 ml-1 font-bold">（2026年9月17日 配信）</span></span>
+      </a>
+    </div>
+
+    <span class="badge"><i class="fa-solid fa-clipboard mr-1.5"></i> 行事係からのご案内</span>
+    <p class="text-xs text-gray-600 mb-2 font-bold">有明行事係が作成したサポート情報・案内資料です。ご一読ください。</p>
+    <a href="https://drive.google.com/file/d/1e5pG_FPvpEv_6Z8s1sfWn0DsjJnFFOGQ/view?usp=drive_link" target="_blank" class="pdf-link bg-gray-50">
+      <i class="fa-regular fa-file-pdf text-primary text-xl mr-3 w-6 text-center"></i>
+      <span class="font-black text-sm text-[#262626]">行事係からのご案内資料（PDF）</span>
+    </a>
+  </section>
+
+  <!-- # 行動・持ち物ルール -->
+  <section id="rules" class="card p-5">
+    <div class="spec-label">RULES & GEAR</div>
+    <h2 class="section-title text-primary"><i class="fa-solid fa-list-check text-2xl mr-3 text-accent"></i> 行動・持ち物ルール</h2>
+    
+    <span class="badge"><i class="fa-solid fa-shield-halved mr-1.5"></i> 行動規則（DO / DON'T）</span>
+    <ul class="custom-list text-sm text-gray-800 font-medium mb-6">
+      <li><strong>接触禁止：</strong>子どもに必要以上に声をかけない。危険な場所以外は手を貸さず、離れて見守る。</li>
+      <li><strong>食べ物禁止：</strong>子どもに飴などを渡さない。</li>
+      <li><strong>時間厳守：</strong>集合時間・出発時間厳守です。保護者の遅刻は全体に迷惑がかかります。</li>
+      <li><strong>移動と点呼：</strong>宿↔プログラム間はバス送迎。乗車時は点呼係の指示に従う。</li>
+      <li><strong>飲食・飲酒：</strong>SAでの飲食は自由ですが、子どもたちの目もあるためバス乗車後に。飲酒状態でのプログラム参加は不可。</li>
+      <li><strong>環境配慮：</strong>田んぼ・会場周辺・徒歩移動中のゴミ拾いにご協力ください。</li>
+    </ul>
+
+    <span class="badge"><i class="fa-solid fa-tape mr-1.5"></i> 荷物の絶対ルール：オレンジガムテープ</span>
+    <div class="border-2 border-accent p-3 mb-6 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjRjI2NDMwIiBzdHJva2Utd2lkdGg9IjAuNSIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTAgNDAgTDQwIDAiLz48L2c+PC9zdmc+')] bg-repeat">
+      <div class="bg-white p-3.5 border-2 border-[#262626]">
+        <p class="text-sm font-bold text-gray-800 mb-2 leading-relaxed">持ち物へはすべて記名（記名必須）してください。<br>スーツケース等には<strong class="text-accent text-base">オレンジ色のガムテープ</strong>に【 園名・クラス＋名前・宿名 】を明確に記載して貼付してください。</p>
+        <p class="text-xs bg-[#262626] text-white p-2 font-mono inline-block"><i class="fa-solid fa-pen-to-square mr-1 text-accent"></i> 例）有明 Ｖ木村 ギンレイホテル</p>
+      </div>
+    </div>
+    
+    <!-- 保護者の持ち物 -->
+    <span class="badge"><i class="fa-solid fa-toolbox mr-1.5"></i> 保護者の持ち物</span>
+    <p class="text-xs text-gray-700 font-bold mb-2">保護者の持ち物につきましては、下記を参考にご用意ください。</p>
+    
+    <div class="gear-card">
+      <ul class="gear-list">
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>名札（係での参加者は腕章等も）</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>1日目の昼食＆飲み物</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>着替え（2日目用＆予備）</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>タオル＆洗面用具</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>防寒着（野外用）</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>動きやすい靴</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>雨具（傘）、帽子</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>軍手</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>懐中電灯</div>
+        </li>
+        <li>
+          <i class="fa-regular fa-square"></i>
+          <div>キッチンバサミやナイフ等（魚をさばく用）<span class="text-xs text-gray-600 block font-normal mt-0.5">※持ってくる際は安全に配慮をお願いします。</span></div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- # 宿泊先 -->
+  <section id="lodging" class="card p-5">
+    <div class="spec-label">ACCOMMODATION</div>
+    <h2 class="section-title text-primary"><i class="fa-solid fa-hotel text-2xl mr-3 text-accent"></i> 宿泊施設一覧</h2>
+    
+    <div class="mb-3">
+      <p class="text-xs font-bold text-gray-800 leading-relaxed mt-2">
+        各宿の一覧・住所です。 <span class="text-red-600">※規定外の宿を個人手配しての参加は固く禁じます。</span>
+      </p>
+    </div>
+
+    <div class="overflow-x-auto mb-2">
+      <table class="w-full text-sm text-center border-collapse border-2 border-[#262626] bg-[#FAFAFA]">
+        <thead>
+          <tr class="bg-primary text-white border-b-2 border-[#262626]">
+            <th class="py-3 px-4 font-extrabold text-center border-r-2 border-[#262626] w-5/12">宿名</th>
+            <th class="py-3 px-4 font-extrabold text-center">住所</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y-2 divide-[#262626] font-bold">
+          <tr class="border-b-2 border-[#262626]">
+            <td class="py-3.5 px-3 border-r-2 border-[#262626] text-center">
+              <a href="https://www.yuzawa-yuzawa.com/" target="_blank" class="underline text-[#262626] hover:text-accent font-extrabold inline-flex items-center gap-1 justify-center">
+                ホテル湯沢湯沢でんき屋 <i class="fa-solid fa-location-dot text-accent text-sm"></i>
+              </a>
+            </td>
+            <td class="py-3.5 px-3 text-gray-800 text-center font-bold">
+              新潟県南魚沼郡湯沢町岩原155
+            </td>
+          </tr>
+          <tr class="border-b-2 border-[#262626]">
+            <td class="py-3.5 px-3 border-r-2 border-[#262626] text-center">
+              <a href="https://iwappara.co.jp/" target="_blank" class="underline text-[#262626] hover:text-accent font-extrabold inline-flex items-center gap-1 justify-center">
+                ギンレイホテル <i class="fa-solid fa-location-dot text-accent text-sm"></i>
+              </a>
+            </td>
+            <td class="py-3.5 px-3 text-gray-800 text-center font-bold">
+              新潟県南魚沼郡湯沢町土樽731
+            </td>
+          </tr>
+          <tr>
+            <td class="py-3.5 px-3 border-r-2 border-[#262626] text-center">
+              <a href="https://yuzawa-ebisuya.net/" target="_blank" class="underline text-[#262626] hover:text-accent font-extrabold inline-flex items-center gap-1 justify-center">
+                えびすや旅館 <i class="fa-solid fa-location-dot text-accent text-sm"></i>
+              </a>
+            </td>
+            <td class="py-3.5 px-3 text-gray-800 text-center font-bold">
+              新潟県南魚沼郡湯沢町土樽1305番地2
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- # 会場マップ -->
+  <section id="map" class="card p-5">
+    <div class="spec-label">VENUE MAP</div>
+    <h2 class="section-title text-primary"><i class="fa-solid fa-map-location-dot text-2xl mr-3 text-accent"></i> 会場マップ</h2>
+    
+    <div class="mb-4">
+      <img src="map.jpg" alt="収穫祭 会場MAP" class="w-full border-2 border-[#262626] shadow-[3px_3px_0px_#262626] rounded-sm mb-3">
+    </div>
+
+    <!-- 推奨経路動画 -->
+    <div class="space-y-4">
+      <div class="bg-gray-100 p-3 border-2 border-[#262626] rounded-sm">
+        <h3 class="font-extrabold text-sm text-[#262626] mb-2 flex items-center">
+          <i class="fa-solid fa-person-walking-arrow-right text-accent mr-2 text-lg"></i> ① 研修田からクロカン会場までの推奨経路
+        </h3>
+        <video controls class="w-full border-2 border-[#262626] shadow-[2px_2px_0px_#262626] bg-black">
+          <source src="ariake/movie/oute01.mp4" type="video/mp4">
+          お使いのブラウザは動画の再生に対応していません。
+        </video>
+      </div>
+      
+      <div class="bg-gray-100 p-3 border-2 border-[#262626] rounded-sm">
+        <h3 class="font-extrabold text-sm text-[#262626] mb-2 flex items-center">
+          <i class="fa-solid fa-person-walking-arrow-right text-accent mr-2 text-lg"></i> ② 研修田からフィッシングパークまでの推奨経路
+        </h3>
+        <video controls class="w-full border-2 border-[#262626] shadow-[2px_2px_0px_#262626] bg-black">
+          <source src="ariake/movie/oute02.mp4" type="video/mp4">
+          お使いのブラウザは動画の再生に対応していません。
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- # スケジュール -->
+  <section id="schedule" class="card p-5">
+    <div class="spec-label">SCHEDULE</div>
+    <h2 class="section-title text-primary"><i class="fa-regular fa-clock text-2xl mr-3 text-accent"></i> スケジュール</h2>
+    
+    <!-- DAY 1 -->
+    <div class="mb-8">
+      <div class="bg-[#262626] text-white px-3 py-2.5 text-base md:text-lg font-black flex items-center justify-between border-2 border-[#262626] shadow-[2px_2px_0px_#262626] mb-3">
+        <span><i class="fa-solid fa-calendar-day text-accent mr-2"></i> DAY 1 - 2026年9月25日(金)</span>
+        <span class="text-xs font-mono bg-accent px-2 py-0.5 rounded-sm">稲刈り・魚つかみ・奉納</span>
+      </div>
+      
+      <div class="space-y-2">
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">06:45</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug w-full">
+            <div>豊洲公園 集合</div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※時間厳守。各指定のバスへ搭乗・荷物積み込み</div>
+            
+            <!-- 変則的な荷物積込の注意書き -->
+            <div class="mt-2.5 p-2.5 bg-red-50 border-2 border-red-500 text-xs text-gray-800 leading-relaxed font-bold shadow-[2px_2px_0px_#ef4444]">
+              <div class="text-red-600 font-black mb-1.5 flex items-center text-[13px]">
+                <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> 【重要】変則的な荷物積み込みについて
+              </div>
+              <p class="mb-2 text-[11px] text-gray-700 font-normal leading-tight">
+                撮影担当（アルバム・DVD）の移動を優先調整した関係で、一部の方は<span class="font-bold text-red-600">乗車バスと、宿の荷物を積むバスが異なります。</span><br>
+                行事係が代わりにバスから各ホテルへ運搬するため、<strong class="text-red-600">荷物のガムテープには「宿名」を必ず明記</strong>してください（特にママの荷物はご注意ください）。
+              </p>
+              <ul class="space-y-1.5">
+                <li class="flex items-center bg-white p-1.5 border border-red-200">
+                  <i class="fa-solid fa-person text-blue-600 mr-1.5 text-base w-4 text-center"></i> 
+                  <span class="flex-1 leading-tight"><span class="bg-[#262626] text-white px-1.5 py-0.5 rounded-sm mr-1.5 text-[10px] inline-block mb-0.5">9号車に乗るパパ</span> 宿の荷物は <strong class="text-accent text-sm ml-0.5">【8号車】</strong> へ</span>
+                </li>
+                <li class="flex items-center bg-white p-1.5 border border-red-200">
+                  <i class="fa-solid fa-person-dress text-red-500 mr-1.5 text-base w-4 text-center"></i> 
+                  <span class="flex-1 leading-tight"><span class="bg-[#262626] text-white px-1.5 py-0.5 rounded-sm mr-1.5 text-[10px] inline-block mb-0.5">8号車に乗るママ</span> 宿の荷物は <strong class="text-accent text-sm ml-0.5">【9号車】</strong> へ</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">07:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>豊洲公園 出発</div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※SA休憩時：バス点呼・園児誘導・トイレ巡回</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">10:15</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>現地到着・各宿へ荷物降ろし</div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※宿ごとに下車・荷物を降ろして開発センターへ集合</div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">10:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>開村式 <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠開発センター</span></div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">11:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>稲刈り開始 <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠BUDDY研修田</span></div>
+            <div class="text-[11px] text-gray-600 font-normal mt-1 leading-relaxed">
+              鎌の安全な声掛け・落ち穂拾い・集合写真撮影。<br>
+              <span class="text-accent font-bold">※田んぼ内の「稲文字用すずらんテープエリア」の稲は子どもに刈らせないようご注意ください。</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">12:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>昼食 <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠フィッシングパーク</span></div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※各自用意の昼食を食べる。ゴミ管理は徹底して各自持ち帰り。</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">13:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>クロスカントリー試走 <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠クロカン会場</span></div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※コース下見・試走見守り</div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">14:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>奉納 <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠瑞祥庵 月</span></div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※神社到着次第参拝・奉納</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">15:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug w-full">
+            <div>魚掴み <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠フィッシングパーク</span></div>
+            <div class="text-[11px] text-gray-600 font-normal mt-0.5 mb-2 leading-relaxed">
+              ※魚の下処理・炭火焼き作業。基本は行事係にて行いますが、ご自身で捌いてみたい方やお手伝いいただける方も適宜ご参加いただけます。当日の状況にもよりますが、ご希望の際は行事係までお声がけください。
+            </div>
+            
+            <!-- 動画リンクカード (視認性を高めたデザイン) -->
+            <div class="bg-gray-100 border-2 border-[#262626] p-2.5 rounded-sm my-1">
+              <div class="text-xs font-extrabold text-[#262626] mb-2 flex items-center">
+                <i class="fa-brands fa-youtube text-red-600 text-base mr-1.5"></i> 参考動画（事前確認用）
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <a href="https://youtu.be/X09uYtpPxpU?si=4zoMkhwozryzMtGY" target="_blank" class="flex items-center p-2 bg-white border-2 border-[#262626] shadow-[2px_2px_0px_#262626] hover:bg-red-50 transition-all text-xs font-bold text-[#262626] active:translate-y-[1px] active:translate-x-[1px]">
+                  <i class="fa-solid fa-circle-play text-red-600 text-xl mr-2 flex-shrink-0"></i>
+                  <div>
+                    <div class="text-[10px] text-gray-500 font-normal">下処理の事前チェック</div>
+                    <div class="flex items-center gap-1">魚の捌き方動画 <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-gray-400"></i></div>
+                  </div>
+                </a>
+                <a href="https://youtu.be/SMQoN3JQNjc?si=x7bCVohfsJaj8qe8" target="_blank" class="flex items-center p-2 bg-white border-2 border-[#262626] shadow-[2px_2px_0px_#262626] hover:bg-red-50 transition-all text-xs font-bold text-[#262626] active:translate-y-[1px] active:translate-x-[1px]">
+                  <i class="fa-solid fa-circle-play text-red-600 text-xl mr-2 flex-shrink-0"></i>
+                  <div>
+                    <div class="text-[10px] text-gray-500 font-normal">炭火で美味しく！</div>
+                    <div class="flex items-center gap-1">魚の焼き方動画 <i class="fa-solid fa-arrow-up-right-from-square text-[9px] text-gray-400"></i></div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">16:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>各プログラム終了・各宿へ移動</div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※宿↔会場間はバス送迎あり</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">17:30〜</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>夕食・入浴（各宿にて）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div>
+      <div class="bg-[#262626] text-white px-3 py-2.5 text-base md:text-lg font-black flex items-center justify-between border-2 border-[#262626] shadow-[2px_2px_0px_#262626] mb-3">
+        <span><i class="fa-solid fa-calendar-day text-accent mr-2"></i> DAY 2 - 2026年9月26日(土)</span>
+        <span class="text-xs font-mono bg-accent px-2 py-0.5 rounded-sm">クロカン大会・閉村式</span>
+      </div>
+
+      <div class="space-y-2">
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">06:45〜</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>朝食（各宿にて）</div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">07:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>チェックアウト完了・宿出発</div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※荷物をまとめて宿発（徒歩または送迎バスで開発センターへ）</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">08:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>開発センター 到着・荷物置き場へ集積</div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">08:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>クロスカントリー大会（開会式・本番）</div>
+            <div class="text-[11px] text-gray-600 font-normal mt-0.5">※伴走・音の鳴る応援グッズ使用禁止。マナーを守って応援をお願いします。</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">11:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>閉村式 <span class="bg-gray-200 text-gray-700 px-1 font-normal ml-1">＠開発センター</span></div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">11:30</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>昼食（お弁当配布）</div>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">12:15</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>現地出発（観光バスで豊洲公園へ）</div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border-2 border-[#262626] p-3 flex shadow-[2px_2px_0px_#262626]">
+          <div class="w-16 font-black font-mono text-accent text-sm md:text-base border-r-2 border-gray-200 pr-2 flex-shrink-0">16:00</div>
+          <div class="pl-3 text-sm md:text-base font-bold text-gray-900 leading-snug">
+            <div>豊洲公園 到着・解散</div>
+            <div class="text-[11px] text-gray-500 font-normal mt-0.5">※交通事情により時間変更となる場合があります。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- # 行事係専用 -->
+  <section id="staff" class="card p-5">
+    <div class="spec-label">STAFF ONLY</div>
+    <h2 class="section-title text-primary"><i class="fa-solid fa-lock text-2xl mr-3 text-accent"></i> 行事係専用エリア</h2>
+    
+    <!-- Locked Password View (Matching Image 2) -->
+    <div id="staff-lock-view" class="bg-[#262626] border-2 border-[#262626] p-6 rounded-sm text-center shadow-[4px_4px_0px_#262626]">
+      <div class="my-2">
+        <i class="fa-solid fa-shield-halved text-5xl text-accent mb-3"></i>
+      </div>
+      <h3 class="text-xl font-black text-white tracking-wider mb-2" style="font-family: 'Montserrat', sans-serif;">STAFF ONLY AREA</h3>
+      <p class="text-xs text-gray-300 font-bold mb-6 leading-relaxed">
+        行事係専用エリアです。<br>係用パスワードを入力してください。
+      </p>
+      
+      <div class="max-w-md mx-auto space-y-4">
+        <input type="password" id="staff-pass" placeholder="PASSWORD" class="w-full bg-[#1e1e1e] border-2 border-[#b89758] text-white text-center text-lg font-mono py-2 px-4 focus:outline-none focus:border-accent">
+        <button onclick="unlockStaffArea()" class="w-full bg-accent hover:bg-[#e05020] text-white font-black text-base py-3 border-2 border-white shadow-[2px_2px_0px_#000] active:translate-y-[2px] transition-all">
+          ロック解除
+        </button>
+      </div>
+    </div>
+
+    <!-- Unlocked Menu View (Matching Image 1) -->
+    <div id="staff-menu-view" class="hidden">
+      <div class="border-b-2 border-[#262626] pb-2 mb-4">
+        <h3 class="font-black text-lg text-[#262626] flex items-center">
+          <i class="fa-solid fa-user-gear text-accent mr-2"></i> 行事係 管理メニュー
+        </h3>
+      </div>
+      
+      <p class="text-xs text-gray-700 font-bold mb-4 leading-relaxed bg-gray-100 p-3 border border-gray-300">
+        ※閲覧・ダウンロード可能なマスターデータは、ログインアカウントまたは端末に紐づく所属園のもののみに制限されます（各園管理）。
+      </p>
+
+      <div class="space-y-3">
+        <a href="https://docs.google.com/spreadsheets/d/1ey61ej8ycs6lSxRMb3KGBRTBbYI3xE9DUIJfT5vUDmo/edit?usp=drive_link" target="_blank" class="pdf-link">
+          <i class="fa-solid fa-file-excel text-green-600 text-2xl mr-3.5 w-6 text-center"></i>
+          <span class="text-sm font-black text-[#262626]">有明参加保護者リスト(DB)スプレッドシート ※権限保持者のみ</span>
+        </a>
+
+        <a href="https://drive.google.com/file/d/1_heez1wRhRnWNgmFiMf4Vvep_LxXJx7v/view?usp=drive_link" target="_blank" class="pdf-link">
+          <i class="fa-regular fa-file-pdf text-red-500 text-2xl mr-3.5 w-6 text-center"></i>
+          <span class="text-sm font-black text-[#262626]">有明収穫祭 行事係 行程表 (PDF)</span>
+        </a>
+
+        <a href="https://drive.google.com/file/d/18Ix05kpX078ZQa_J7XOUyKaHBzGS6RFD/view?usp=drive_link" target="_blank" class="pdf-link">
+          <i class="fa-regular fa-file-pdf text-red-500 text-2xl mr-3.5 w-6 text-center"></i>
+          <span class="text-sm font-black text-[#262626]">行事係サポート内容説明資料 (PDF)</span>
+        </a>
+
+
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  function unlockStaffArea() {
+    const pass = document.getElementById('staff-pass').value;
+    // Password check logic
+    if (pass === 'buddy2026' || pass === 'buddy' || pass === '2026') {
+      document.getElementById('staff-lock-view').classList.add('hidden');
+      document.getElementById('staff-menu-view').classList.remove('hidden');
+    } else {
+      alert('パスワードが正しくありません。');
+    }
+  }
+</script>
+
+<footer class="text-center text-xs text-gray-600 font-bold mt-8 pb-8 pt-4 bg-[#262626] text-gray-400">
+  <p style="font-family: 'Montserrat', sans-serif;">&copy; buddy ariake 2026 gyoji event staff</p>
+</footer>
+
+</body>
+</html>
